@@ -21,26 +21,55 @@ export class BuildService {
             type: 'json_schema',
             name: 'blocks',
             schema: {
-              type: 'array',
-              items: {
-                type: 'object',
-                properties: {
-                  x: { type: 'integer' },
-                  xTo: { type: 'integer' },
-                  y: { type: 'integer' },
-                  yTo: { type: 'integer' },
-                  z: { type: 'integer' },
-                  zTo: { type: 'integer' },
-                  facing: { type: 'string' },
-                  block: { type: 'string' },
+              type: 'object',
+              properties: {
+                blocks: {
+                  type: 'array',
+                  items: {
+                    type: 'object',
+                    properties: {
+                      x: { type: 'integer' },
+                      xTo: { type: 'integer' },
+                      y: { type: 'integer' },
+                      yTo: { type: 'integer' },
+                      z: { type: 'integer' },
+                      zTo: { type: 'integer' },
+                      facing: { type: 'string' },
+                      block: { type: 'string' },
+                    },
+                    required: [
+                      'x',
+                      'xTo',
+                      'y',
+                      'yTo',
+                      'z',
+                      'zTo',
+                      'facing',
+                      'block',
+                    ],
+                    additionalProperties: false,
+                  },
                 },
-                required: ['x', 'y', 'z', 'block'],
-                additionalProperties: false,
               },
+              required: ['blocks'],
+              additionalProperties: false,
             },
+            strict: true,
           },
         },
       });
+
+      // Extract the content from the response
+      const content = response.output_text;
+
+      // Parse the JSON response
+      if (content) {
+        const parsedData = JSON.parse(content);
+        console.log('Parsed Data:', parsedData);
+        return parsedData;
+      } else {
+        throw new Error('No content in response');
+      }
     } catch (error) {
       console.error('Error generating build:', error);
       throw new Error('Failed to generate build');
