@@ -6,8 +6,8 @@ import { BuildService } from './build/build.service';
 import { ConfigModule } from '@nestjs/config';
 
 @Module({
-  imports: [ConfigModule.forRoot()],
+  imports: [BuildModule, ConfigModule.forRoot()],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService, BuildService],
 })
 export class AppModule {}

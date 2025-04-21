@@ -1,12 +1,18 @@
 import { Controller, Get } from '@nestjs/common';
 import { AppService } from './app.service';
+import { BuildService } from './build/build.service';
 
 @Controller()
 export class AppController {
-  constructor(private readonly appService: AppService) {}
+  constructor(
+    private readonly appService: AppService,
+    private buildService: BuildService,
+  ) {}
 
   @Get()
   async getHello() {
-    return this.appService.getHello();
+    return this.buildService.generateBuild(
+      'Generate an small aesthetic house for me',
+    );
   }
 }

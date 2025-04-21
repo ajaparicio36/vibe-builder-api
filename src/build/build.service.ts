@@ -34,21 +34,34 @@ export class BuildService {
                       yTo: { type: 'integer' },
                       z: { type: 'integer' },
                       zTo: { type: 'integer' },
-                      half: { type: 'string', enum: ['top', 'bottom'] },
+                      half: {
+                        type: ['string', 'null'],
+                        enum: ['top', 'bottom', null],
+                      },
                       shape: {
-                        type: 'string',
+                        type: ['string', 'null'],
                         enum: [
                           'straight',
                           'inner_left',
                           'inner_right',
                           'outer_left',
                           'outer_right',
+                          null,
                         ],
                       },
-                      persistent: { type: 'boolean' },
-                      axis: { type: 'string', enum: ['x', 'y', 'z'] },
-                      open: { type: 'string', enum: ['open', 'closed'] },
-                      facing: { type: 'string' },
+                      persistent: { type: ['boolean', 'null'] },
+                      axis: {
+                        type: ['string', 'null'],
+                        enum: ['x', 'y', 'z', null],
+                      },
+                      open: {
+                        type: ['string', 'null'],
+                        enum: ['open', 'closed', null],
+                      },
+                      facing: {
+                        type: ['string', 'null'],
+                        enum: ['north', 'east', 'south', 'west', null],
+                      },
                       block: { type: 'string' },
                     },
                     required: [
