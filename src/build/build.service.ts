@@ -59,13 +59,10 @@ export class BuildService {
         },
       });
 
-      // Extract the content from the response
       const content = response.output_text;
 
-      // Parse the JSON response
       if (content) {
         const parsedData = JSON.parse(content);
-        console.log('Parsed Data:', parsedData);
         return parsedData;
       } else {
         throw new Error('No content in response');

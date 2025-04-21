@@ -10,8 +10,7 @@ export class BuildController {
   async generateBuild(@Body() generateBuildDto: GenerateBuildDto) {
     try {
       const prompt = generateBuildDto.prompt;
-      const response = await this.buildService.generateBuild(prompt);
-      return response;
+      return this.buildService.generateBuild(prompt);
     } catch (error) {
       console.error('Error generating build:', error);
       throw new Error('Failed to generate build');
