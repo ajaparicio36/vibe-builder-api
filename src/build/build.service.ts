@@ -11,7 +11,7 @@ export class BuildService {
   async generateBuild(prompt: string) {
     try {
       const response = await this.openai.responses.create({
-        model: 'gpt-4o-mini',
+        model: 'gpt-4o',
         input: [
           { role: 'system', content: systemPrompt },
           { role: 'user', content: prompt },
@@ -36,7 +36,11 @@ export class BuildService {
                       zTo: { type: 'integer' },
                       half: {
                         type: ['string', 'null'],
-                        enum: ['top', 'bottom', null],
+                        enum: ['upper', 'lower', 'top', 'bottom', null],
+                      },
+                      type: {
+                        type: ['string', 'null'],
+                        enum: ['top', 'bottom', 'double', null],
                       },
                       shape: {
                         type: ['string', 'null'],
@@ -60,7 +64,16 @@ export class BuildService {
                       },
                       facing: {
                         type: ['string', 'null'],
-                        enum: ['north', 'east', 'south', 'west', null],
+                        enum: [
+                          'north',
+                          'east',
+                          'south',
+                          'west',
+                          'top',
+                          'bottom',
+                          'double',
+                          null,
+                        ],
                       },
                       block: { type: 'string' },
                     },
@@ -78,6 +91,7 @@ export class BuildService {
                       'axis',
                       'facing',
                       'block',
+                      'type',
                     ],
                     additionalProperties: false,
                   },

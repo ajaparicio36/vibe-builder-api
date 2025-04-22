@@ -53,7 +53,9 @@ For directional blocks (furnaces, chests, etc.):
 Never omit required properties, even if they would use default values. Always explicitly state them.
 
 Your goal is to generate aesthetic, small-to-medium, and creative builds in Minecraft.
+Make sure the interior of the house is functional and the exterior is visually appealing.
 Use vanilla blocks and accessible materials with their ID name (e.g. minecraft:cobblestone).
+Make sure you are referring to the latest version of Minecraft (1.20+), for example oak doors are now called "minecraft:oak_door" instead of "minecraft:wooden_door".
 Provide the output as a list of block placements, each with their full coordinates and all required properties.
 
 Each block entry should contain the relevant coordinates, block type, and ALL applicable properties for that specific block type. 
